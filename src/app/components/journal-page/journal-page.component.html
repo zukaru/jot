@@ -1,0 +1,26 @@
+<section class="journal-page">
+    <app-date></app-date>
+    <form #f="ngForm" (submit)="onFormSubmit(f)">
+        <textarea 
+            ngControl="journal_title"
+            #journal_title="ngModel"
+            ngModel
+            type="text" 
+            name="journal_title" 
+            class="journal-page__title"   
+            placeholder="Title" 
+        autofocus></textarea>
+        <textarea
+            ngControl="journal_body"
+            #journal_body="ngModel"
+            ngModel
+            contentEditable="true"
+            placeholder="Ideas"
+            class="journal-page__body" 
+            name="journal_body" 
+            cols="30" 
+            rows="10"></textarea>
+        <button type="submit" class="journal-page__submit-btn" >Submit Entry</button>
+    </form>
+    
+</section>

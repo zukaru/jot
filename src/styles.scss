@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~firebaseui/dist/firebaseui.css';
+@import '~src/styles/abstracts/variables';
+
+body {
+    font-family: 'Indie Flower', cursive;
+    background: linear-gradient(
+        var(--color-primary-trans),
+        var(--color-primary-trans),
+        ), url(./assets/images/paper_background.jpg);
+    color: var(--color-secondary-dark-trans);
+    background-position: center;
+}

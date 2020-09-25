@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jot-journal-be160": {
+      "hosting": {
+        "journal-app": [
+          "jot-journal-be160"
+        ]
+      }
+    }
+  }
+}

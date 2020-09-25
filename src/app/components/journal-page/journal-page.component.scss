@@ -1,0 +1,105 @@
+.journal-page {
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    width: 100%;
+    background: transparent;
+    &__title {
+        width: 85%;
+        background: transparent;
+        min-height: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        color: var(--color-secondary-dark-trans);
+        caret-color: var(--color-tertiary);
+        letter-spacing: 4px;
+        padding: 1rem;
+        resize: none;
+        border: 2px solid var(--color-primary-dark-trans);
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+        &::placeholder {color: var(--color-tertiary); opacity: .8;}
+        &:focus {
+            outline: none;
+        }
+
+        &__label {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+        }
+    }
+    &__body {
+        width: 85%;
+        height: 100%;
+        background: transparent;
+        border: transparent;
+        resize: none;
+        margin-top: 3rem;
+        padding: 1rem;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: var(--color-secondary-dark-trans);
+        caret-color: var(--color-tertiary);
+        letter-spacing: 4px;
+        &::placeholder {color: var(--color-tertiary); opacity: .8;}
+
+        &:focus {
+            outline: none;
+        }
+
+        // &__caret {
+        //     display: inline-block;
+        //     position: relative;
+        //     width: 1.2rem;
+        //     height: 0.2rem;
+        //     background-color: var(--color-tertiary);
+        //     animation: blink 2s infinite;
+        //     letter-spacing: 10px;
+        // }
+    }
+    &__submit-btn {
+        color: var(--color-primary-light);
+        position: absolute;
+        bottom: 1rem;
+        right: 0;
+        width: 5.5rem;
+        height: 4rem;
+        border-radius: 50px 0 0 50px;
+        border: 5px solid var(--color-primary-dark);
+        box-shadow: 0px 0px 3px 3px var(--color-secondary-dark);
+        background: var(--color-secondary-dark);
+        border-RIGHT-style: none;
+
+        cursor: pointer;
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            box-shadow: 0px 0px 1px 1px var(--color-secondary-dark);
+            transform: scale(0.95);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+    }
+}
+
+
+
+
+@keyframes blink {
+    20% {opacity: 1};
+    40% { opacity: 0};
+    60% { opacity: 1};
+}
