@@ -7,10 +7,11 @@
     <nav class="nav-modal">
         <ul class="nav-modal__list">
             <li
+            *ngIf="!this.isLoggedIn"
             (click)="goToAuth()"
              class="nav-modal__list__items" >Sign In / Sign Up</li>
             <li
-            *ngIf="this.displaySignout"
+            *ngIf="this.isLoggedIn"
             (click)="signOut()"
             class="nav-modal__list__items" >Sign Out</li>
             <li class="nav-modal__list__items">Entry Collection</li>

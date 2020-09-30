@@ -9,7 +9,7 @@ type JournalEntry = {title: string, body: string};
 })
 export class DatabaseService {
 
-  userId: string;
+  userId: string | false;
 
 
   constructor(public af: AngularFirestore) { }

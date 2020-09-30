@@ -10,7 +10,7 @@ import { DatabaseService } from 'src/app/services/database.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, OnDestroy {
-  displaySignout = false;
+  isLoggedIn = false;
   userSub: Subscription;
 
   menuVisible = false;
@@ -44,14 +44,14 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   signOut() {
     this.angularFireAuth.signOut()
-    .then(() => {alert('Sign Out Successful.'); this.dbService.userId = undefined;});
-    this.displaySignout = false;
+    .then(() => {alert('Sign Out Successful.'); this.dbService.userId = false});
+    this.isLoggedIn = false;
   }
 
   isSignedIn() {
     this.userSub = this.angularFireAuth.user.subscribe(
       (v: firebase.User) => {
-        v.uid ? this.displaySignout = true : this.displaySignout = false;
+        v?.uid ? this.isLoggedIn = true : this.isLoggedIn = false;
         }
     )
   }
