@@ -10,6 +10,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./journal-page.component.scss']
 })
 export class JournalPageComponent implements OnInit {
+  submissionSuccess = false;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -18,6 +19,14 @@ export class JournalPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+  }
+
+  onSubmissionSuccess() {
+    this.submissionSuccess = true;
+    setTimeout( () => {
+      this.submissionSuccess = false;
+    }, 3000);
   }
 
   onFormSubmit(f: NgForm) {
@@ -29,7 +38,7 @@ export class JournalPageComponent implements OnInit {
         body: f.value.journal_body,
         date: new Date().toDateString()
       })
-      .then(() => alert('Still logged in, entry submitted.'))
+      .then(() => this.onSubmissionSuccess())
       
     } else {
       alert('Not logged in, entry not submitted.');

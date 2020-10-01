@@ -29,6 +29,7 @@ export class AuthComponent implements OnInit {
     this.router.navigateByUrl('/');
     alert(`Login Success ${event.authResult.user.uid}`)
     this.db.userId = event.authResult.user.uid;
+    this.db.setPersist('USER_ID', this.db.userId)
 
   }
 

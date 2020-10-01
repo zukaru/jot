@@ -1,6 +1,6 @@
 <section class="journal-page">
     <app-date></app-date>
-    <form #f="ngForm" (submit)="onFormSubmit(f)">
+    <form *ngIf="!submissionSuccess" #f="ngForm" (submit)="onFormSubmit(f)">
         <textarea 
             ngControl="journal_title"
             #journal_title="ngModel"
@@ -22,5 +22,9 @@
             rows="10"></textarea>
         <button type="submit" class="journal-page__submit-btn" >Submit Entry</button>
     </form>
+
+    <p 
+    *ngIf="submissionSuccess"
+    class="journal-page__entry-submitted-message">Entry Successfully saved!</p>
     
 </section>

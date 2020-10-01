@@ -28,6 +28,7 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isSignedIn();
+    this.setUserId();
     
   }
   ngOnDestroy() {
@@ -45,7 +46,9 @@ export class MenuComponent implements OnInit, OnDestroy {
   signOut() {
     this.angularFireAuth.signOut()
     .then(() => {alert('Sign Out Successful.'); this.dbService.userId = false});
+    this.dbService.clearPersist('USER_ID')
     this.isLoggedIn = false;
+    this.menuVisible = false;
   }
 
   isSignedIn() {
@@ -54,6 +57,12 @@ export class MenuComponent implements OnInit, OnDestroy {
         v?.uid ? this.isLoggedIn = true : this.isLoggedIn = false;
         }
     )
+  }
+
+  setUserId() {
+    if(this.dbService.getPersist('USER_ID')) {
+      this.dbService.userId = this.dbService.getPersist('USER_ID')
+    }
   }
   
 
