@@ -1,7 +1,8 @@
 <section class="journal-page">
     <app-date></app-date>
     <form *ngIf="!submissionSuccess" #f="ngForm" (submit)="onFormSubmit(f)">
-        <textarea 
+        <textarea
+            required 
             ngControl="journal_title"
             #journal_title="ngModel"
             ngModel
@@ -11,6 +12,7 @@
             placeholder="Title" 
         autofocus></textarea>
         <textarea
+            required
             ngControl="journal_body"
             #journal_body="ngModel"
             ngModel
@@ -20,11 +22,17 @@
             name="journal_body" 
             cols="30" 
             rows="10"></textarea>
-        <button type="submit" class="journal-page__submit-btn" >Submit Entry</button>
+        <p *ngIf="f.dirty && !journal_body.valid" class="journal-page__form-message">Give this entry some content to submit.</p>
+        <p *ngIf="f.dirty && !journal_title.valid" class="journal-page__form-message">Give this entry a title to submit.</p>
+        <button *ngIf="f.valid" type="submit" class="journal-page__submit-btn" >Submit Entry</button>
+        
+        
     </form>
 
     <p 
     *ngIf="submissionSuccess"
-    class="journal-page__entry-submitted-message">Entry Successfully saved!</p>
+    class="journal-page__entry-submitted-message">Entry Submitted!</p>
+
+
     
 </section>

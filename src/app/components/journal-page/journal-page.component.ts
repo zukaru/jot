@@ -30,13 +30,19 @@ export class JournalPageComponent implements OnInit {
   }
 
   onFormSubmit(f: NgForm) {
+    const journalEntry = {
+      userId: this.dbService.userId,
+      title: f.value.journal_title,
+      body: f.value.journal_body,
+      date: new Date().toDateString(),
+      entryId: '',
+      }
     if (this.dbService.userId) {
       this.afs.collection('entries')
-      .add({
-        userId: this.dbService.userId,
-        title: f.value.journal_title,
-        body: f.value.journal_body,
-        date: new Date().toDateString()
+      .add(journalEntry)
+      .then((docRef) => {
+        let addJournalEntryId = {...journalEntry};
+        addJournalEntryId.entryId = docRef.id;
       })
       .then(() => this.onSubmissionSuccess())
       

@@ -1,0 +1,52 @@
+.journal-entry {
+    letter-spacing: 1px;
+    background-color: var(--color-primary-light);
+    position: relative;
+    margin: 2rem;
+    padding: 1rem;
+    height: 15rem;
+    width: 10rem;
+    border-radius: 3px;
+    box-shadow: 0 0 10px var(--color-secondary);
+    border: 0.5rem dashed var(--color-primary-dark);
+    transition: transform 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+
+    
+    @media (hover: hover) {
+        &:hover {
+            transform: scale(1.02);
+        }
+        
+    }
+    &:active {
+        transform: scale(0.99);
+    }
+
+    &__title {
+        font-weight: bold;
+    }
+
+    &__body {
+        
+
+    }
+
+    &__date {
+        font-size: small;
+        font-style: italic;
+        position: absolute;
+        bottom: 0;
+        right: 1rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .journal-entry {
+        user-select: none;
+        width: 250px;
+        font-size: 1.3rem;
+    }
+}

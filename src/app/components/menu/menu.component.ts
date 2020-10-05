@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -19,8 +19,6 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: Router,
-    private render: Renderer2,
-    private el: ElementRef,
     private dbService: DatabaseService,
     public angularFireAuth: AngularFireAuth
   ) { }
@@ -45,10 +43,18 @@ export class MenuComponent implements OnInit, OnDestroy {
 
   signOut() {
     this.angularFireAuth.signOut()
-    .then(() => {alert('Sign Out Successful.'); this.dbService.userId = false});
-    this.dbService.clearPersist('USER_ID')
-    this.isLoggedIn = false;
-    this.menuVisible = false;
+    .then(() => {
+      alert('Sign Out Successful.'); this.dbService.userId = false
+      this.dbService.clearPersist('USER_ID')
+      this.isLoggedIn = false;
+      this.menuVisible = false;
+      this.route.navigateByUrl('');
+    })
+    .catch(() => {
+      alert('Something went wrong, try signing out again.')
+    })
+    ;
+    
   }
 
   isSignedIn() {

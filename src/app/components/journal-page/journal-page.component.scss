@@ -45,6 +45,7 @@
     &__body {
         width: 85%;
         height: 100%;
+        white-space: pre-wrap;
         background: transparent;
         border: transparent;
         resize: none;
@@ -93,6 +94,10 @@
             transform: scale(0.95);
             transition: transform 0.1s, box-shadow 0.1s;
         }
+    }
+
+    &__form-message {
+        color: red;
     }
 
     &__entry-submitted-message {

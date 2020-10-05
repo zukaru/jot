@@ -1,0 +1,8 @@
+<section class="entries">
+    <app-journal-entry
+    *ngFor="let entry of this.journalEntryList"
+        entryTitle="{{entry.title}}"
+        entryBody="{{entry.body}}"
+        entryDate="{{entry.date}}"
+    ></app-journal-entry>
+</section>

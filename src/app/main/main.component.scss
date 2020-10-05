@@ -1,9 +1,0 @@
-@keyframes fadein {
-    from{opacity: 0;}
-    to{opacity: 1;}
-}
-
-app-menu, app-header {
-    opacity: 0;
-    animation: fadein 1.5s forwards .3s;
-}

@@ -21,7 +21,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { MainComponent } from './main/main.component';
+import { JournalEntriesComponent } from './components/journal-entries/journal-entries.component';
+import { JournalEntryComponent } from './components/journal-entry/journal-entry.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -42,7 +43,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     MenuComponent,
     DateComponent,
     AuthComponent,
-    MainComponent
+    JournalEntriesComponent,
+    JournalEntryComponent
   ],
   imports: [
     BrowserModule,
