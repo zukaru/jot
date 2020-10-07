@@ -10,6 +10,7 @@ export class JournalEntryComponent implements OnInit {
   @Input() entryTitle: string;
   @Input() entryBody: string;
   @Input() entryDate: string;
+  @Input() entryId: string;
 
   constructor() { }
 

@@ -28,7 +28,10 @@ export class JournalEntriesComponent implements OnInit, OnDestroy {
     .get()
     .subscribe(
       (res) => {
-        this.journalEntryList = res.docs.map(d => d.data());
+        this.journalEntryList = res.docs.map(
+          (d) => {
+            return {journalEntry: d.data(), id: d.id}
+          });
         console.log(this.journalEntryList)
       }
     )

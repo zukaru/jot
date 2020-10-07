@@ -9,8 +9,8 @@ import { JournalEntriesComponent } from './components/journal-entries/journal-en
 const routes: Routes = [
   {path: '', component: JournalPageComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'entries', component: JournalEntriesComponent,
-      children:[{path: ':postId', component: JournalPageComponent}]},
+  {path: 'entries', component: JournalEntriesComponent},
+  {path: 'entry/:id', component: JournalPageComponent}
 ];
 
 @NgModule({
