@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseUISignInSuccessWithAuthResult } from 'firebaseui-angular';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -9,39 +8,18 @@ import { DatabaseService } from 'src/app/services/database.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
-
-  
+export class AuthComponent {
 
   constructor(
-    private angularFireAuth: AngularFireAuth,
     private router: Router,
-    private db: DatabaseService
+    private db: DatabaseService,
     ) { }
-
-  ngOnInit(): void {
-    // this.angularFireAuth.authState.subscribe(this.firebaseAuthChangeListener);
-    
-  
-  }
 
   logInSuccess(event: FirebaseUISignInSuccessWithAuthResult) {
     this.router.navigateByUrl('/');
-    alert(`Login Success ${event.authResult.user.uid}`)
+    alert('You successfully logged in!')
     this.db.userId = event.authResult.user.uid;
-    this.db.setPersist('USER_ID', this.db.userId)
-
-  }
-
-
-
-  firebaseAuthChangeListener(response) {
-    // if needed, do a redirect in here
-    if (response) {
-      console.log('Logged in :)');
-    } else {
-      console.log('Logged out :(');
-    }
+    this.db.setPersist('USER_ID', this.db.userId);
   }
 
 }

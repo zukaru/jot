@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', component: JournalPageComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'entries', component: JournalEntriesComponent},
-  {path: 'entry/:id', component: JournalPageComponent}
+  {path: 'entry/:id', component: JournalPageComponent, data:{}}
 ];
 
 @NgModule({

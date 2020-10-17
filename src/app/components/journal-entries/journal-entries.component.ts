@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
-import { JournalEntryModel } from 'src/app/journal-entry-model';
+import { EntryDataService } from 'src/app/services/entry-data.service';
 
 @Component({
   selector: 'app-journal-entries',
@@ -10,35 +10,32 @@ import { JournalEntryModel } from 'src/app/journal-entry-model';
   styleUrls: ['./journal-entries.component.scss']
 })
 export class JournalEntriesComponent implements OnInit, OnDestroy {
-
-  journalEntrySub: Subscription;
-
-
-
-  journalEntryList = [];
+  fetchEntrySub: Subscription
   
 
   constructor(
-    private db: DatabaseService,
+    public eds: EntryDataService,
+    public db: DatabaseService,
     public afs: AngularFirestore,
   ) { }
 
   ngOnInit(): void {
-    this.journalEntrySub = this.afs.collection('entries', ref => ref.where('userId', '==', this.db.userId))
-    .get()
-    .subscribe(
-      (res) => {
-        this.journalEntryList = res.docs.map(
-          (d) => {
-            return {journalEntry: d.data(), id: d.id}
-          });
-        console.log(this.journalEntryList)
-      }
-    )
+    if(this.db.userId) {
+      this.fetchEntrySub = this.eds.fetchEntries()
+      .subscribe(
+        (res) => {
+          this.eds.journalEntryList = res.docs.map(
+            (d) => {
+              return {journalEntry: d.data(), id: d.id}
+            });
+        }
+      );
+    }
 
   }
 
   ngOnDestroy(): void {
+    this.fetchEntrySub.unsubscribe();
 
   }
 

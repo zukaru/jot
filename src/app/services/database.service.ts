@@ -14,14 +14,6 @@ export class DatabaseService {
 
   constructor(public af: AngularFirestore) { }
 
-  getCol() {
-    return this.af.collection('entry').snapshotChanges()
-    .pipe(
-
-    )
-  }
-
-
   setPersist(key: string, data: any): void {
     try {
       localStorage.setItem(key, JSON.stringify(data));

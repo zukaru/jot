@@ -1,6 +1,6 @@
 <section class="entries">
     <app-journal-entry
-    *ngFor="let entry of this.journalEntryList"
+    *ngFor="let entry of this.eds.journalEntryList"
         [entryId]="entry.id"
         [entryTitle]="entry.journalEntry.title"
         [entryBody]="entry.journalEntry.body"

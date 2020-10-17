@@ -1,11 +1,11 @@
 <section class="journal-page">
     <app-date></app-date>
-    <form *ngIf="!submissionSuccess" #f="ngForm" (submit)="onFormSubmit(f)">
+    <form *ngIf="!submissionSuccess" #f="ngForm" >
         <textarea
             required 
             ngControl="journal_title"
             #journal_title="ngModel"
-            ngModel
+            [(ngModel)]="title"
             type="text" 
             name="journal_title" 
             class="journal-page__title"   
@@ -15,7 +15,7 @@
             required
             ngControl="journal_body"
             #journal_body="ngModel"
-            ngModel
+            [(ngModel)]="body"
             contentEditable="true"
             placeholder="Ideas"
             class="journal-page__body" 
@@ -24,7 +24,24 @@
             rows="10"></textarea>
         <p *ngIf="f.dirty && !journal_body.valid" class="journal-page__form-message">Give this entry some content to submit.</p>
         <p *ngIf="f.dirty && !journal_title.valid" class="journal-page__form-message">Give this entry a title to submit.</p>
-        <button *ngIf="f.valid" type="submit" class="journal-page__submit-btn" >Submit Entry</button>
+        <button 
+            *ngIf="f.valid && !(this.route.isActive('/entry', false))" 
+            (click)="this.submitJE(f)"
+            class="journal-page__submit-btn" >
+            Submit Entry
+        </button>
+        <button
+            *ngIf="this.route.isActive('/entry', false)" 
+            (click)="this.deleteJE(this.dbService.getPersist('ENTRY_ID'))"
+            class="journal-page__delete-btn" >
+            Delete Entry
+        </button>
+        <button 
+            *ngIf="f.valid && this.route.isActive('/entry', false)"
+            (click)="this.updateJE(f)"
+            class="journal-page__update-btn" >
+            Update Entry
+        </button>
         
         
     </form>

@@ -44,14 +44,15 @@ export class MenuComponent implements OnInit, OnDestroy {
   signOut() {
     this.angularFireAuth.signOut()
     .then(() => {
-      alert('Sign Out Successful.'); this.dbService.userId = false
+      alert("You've successfully logged out. Come back soon!");
+      this.route.navigateByUrl('');
+      this.dbService.userId = false;
       this.dbService.clearPersist('USER_ID')
       this.isLoggedIn = false;
       this.menuVisible = false;
-      this.route.navigateByUrl('');
     })
     .catch(() => {
-      alert('Something went wrong, try signing out again.')
+      alert('Something went wrong, try logging out again.')
     })
     ;
     
