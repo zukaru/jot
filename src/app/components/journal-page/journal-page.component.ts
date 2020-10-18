@@ -28,6 +28,12 @@ export class JournalPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if (this.dbService.getPersist('TEMP_ENTRY')) {
+      let journalEntry = this.dbService.getPersist('TEMP_ENTRY');
+      this.title = journalEntry.title;
+      this.body = journalEntry.body;
+      this.dbService.clearPersist('TEMP_ENTRY')
+    }
     if (this.route.isActive('/entry', false)) {
       if( !(this.eds.journalEntryList.length > 0) ) {
         this.eds.fetchEntries()
@@ -96,10 +102,17 @@ export class JournalPageComponent implements OnInit {
         .then((docRef) => {
           let addJournalEntryId = {...journalEntry};
           addJournalEntryId.entryId = docRef.id;
+          f.reset();
         })
         .then(() => this.onSubmissionSuccess())
         .catch(() => alert('Something went wrong, try again.'))
-    } else {alert('Not logged in.')}
+    } else {
+      let redirect = confirm("You're not signed in. You must be signed in to submit a journal entry. Do you want to be redirected to sign in or sign up?");
+      if (redirect) {
+        this.dbService.setPersist('TEMP_ENTRY', {...journalEntry});
+        this.route.navigateByUrl('/auth')
+      }
+    }
   }
 
   deleteJE(entryId: string) {

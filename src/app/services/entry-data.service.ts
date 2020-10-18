@@ -8,6 +8,7 @@ import { DatabaseService } from './database.service';
 export class EntryDataService {
   journalEntryList = [];
   activeEntryId: string;
+  temporaryEntry: any;
 
   constructor(
     public afs: AngularFirestore,
